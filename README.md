@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 泰果汇 (Thailand Fruit Club)
 
-## Getting Started
+泰果汇是一个全平台电商应用，专注于从泰国直接空运新鲜热带水果到欧洲（首先在荷兰展开业务）。
 
-First, run the development server:
+## 主要功能
+
+- 产品展示：展示多种泰国特色热带水果
+- 在线订购：方便用户浏览产品并下单
+- 会员服务：提供20欧元/月的会员订阅服务，每周配送新鲜水果
+- 果树认养：允许用户认养泰国果园中的果树，并接收实时成长信息
+- 多语言支持：支持中文、英文、荷兰语和泰语
+- 响应式设计：适配各种设备尺寸
+
+## 技术栈
+
+- **前端框架**：Next.js
+- **UI框架**：Tailwind CSS
+- **状态管理**：React Hooks
+- **主题系统**：next-themes (支持明暗主题)
+- **国际化**：next-intl (多语言支持)
+- **图标**：Heroicons
+- **反应式组件**：Headless UI
+
+## 如何开始
+
+### 系统要求
+
+- Node.js 16.8 或更高版本
+- npm 7 或更高版本
+
+### 安装步骤
+
+1. 克隆仓库
+   ```bash
+   git clone https://github.com/yourusername/thailand-fruit-club.git
+   cd thailand-fruit-club
+   ```
+
+2. 安装依赖
+   ```bash
+   npm install
+   ```
+
+3. 启动开发服务器
+   ```bash
+   npm run dev
+   ```
+
+4. 打开浏览器访问 http://localhost:3000
+
+### 生产构建
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 项目结构
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+thailand-fruit-club/
+├── app/                       # Next.js App Router
+│   ├── components/            # 共享组件
+│   ├── routes/                # 路由页面
+│   │   ├── products/          # 产品相关页面
+│   │   ├── membership/        # 会员服务页面
+│   │   ├── adopt-a-tree/      # 果树认养页面
+│   │   ├── cart/              # 购物车页面
+│   │   └── checkout/          # 结算页面
+│   ├── lib/                   # 工具函数和服务
+│   ├── hooks/                 # 自定义Hooks
+│   ├── store/                 # 状态管理
+│   ├── api/                   # API路由
+│   └── public/                # 静态资源
+├── public/                    # 公共静态资源
+└── package.json               # 项目依赖
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 未来规划
 
-## Learn More
+1. 实现支付集成 (信用卡，iDEAL，微信支付，支付宝)
+2. 在线客服系统
+3. 库存管理系统
+4. 跨平台移动应用 (iOS & Android)
+5. 扩展到更多欧洲国家
 
-To learn more about Next.js, take a look at the following resources:
+## 贡献
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+欢迎提交问题和拉取请求！
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 许可证
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

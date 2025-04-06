@@ -1,0 +1,178 @@
+// 产品数据
+const products = [
+  {
+    id: '1',
+    name: '金枕头芒果',
+    price: 12.99,
+    description: '泰国金枕头芒果以其香甜多汁，肉质鲜嫩的特点而闻名。果肉呈金黄色，纤维少，口感极佳。',
+    images: [
+      '/images/fruit/mangoes.jpg',
+      '/images/fruit/mangoes.jpg',
+      '/images/fruit/mangoes.jpg',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '7天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '张先生',
+        rating: 5,
+        comment: '芒果非常新鲜，口感很好，下次还会购买！',
+        date: '2024-03-15',
+      },
+      {
+        id: 2,
+        user: '李女士',
+        rating: 4,
+        comment: '包装很好，水果很新鲜，就是价格有点贵。',
+        date: '2024-03-10',
+      },
+    ],
+  },
+  {
+    id: '2',
+    name: '毛朱丹',
+    price: 15.99,
+    description: '泰国毛朱丹果肉细腻，甜度高，带有独特的香气，是泰国最受欢迎的水果之一。',
+    images: [
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '5天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '王先生',
+        rating: 5,
+        comment: '非常好吃，甜度刚好，果肉很嫩。',
+        date: '2024-03-12',
+      },
+    ],
+  },
+  {
+    id: '3',
+    name: '龙眼',
+    price: 9.99,
+    description: '泰国龙眼果肉晶莹剔透，甜而不腻，营养丰富，是夏季消暑佳品。',
+    images: [
+      '/images/fruit/longan.jpg',
+      '/images/fruit/longan.jpg',
+      '/images/fruit/longan.jpg',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '3天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '刘女士',
+        rating: 4,
+        comment: '很新鲜，甜度适中，就是有点小贵。',
+        date: '2024-03-08',
+      },
+    ],
+  },
+  {
+    id: '4',
+    name: '山竹',
+    price: 18.99,
+    description: '泰国山竹果肉洁白如玉，口感细腻，酸甜适中，被誉为"水果皇后"。',
+    images: [
+      '/images/fruit/mangosteen.JPG',
+      '/images/fruit/mangosteen.JPG',
+      '/images/fruit/mangosteen.JPG',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '5天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '陈先生',
+        rating: 5,
+        comment: '品质很好，果肉饱满，非常满意！',
+        date: '2024-03-05',
+      },
+    ],
+  },
+  {
+    id: '5',
+    name: '红毛丹',
+    price: 14.99,
+    description: '泰国红毛丹果肉鲜嫩多汁，甜度适中，富含维生素C，是健康水果的首选。',
+    images: [
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '4天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '赵女士',
+        rating: 4,
+        comment: '很新鲜，口感不错，就是有点贵。',
+        date: '2024-03-01',
+      },
+    ],
+  },
+  {
+    id: '6',
+    name: '榴莲',
+    price: 25.99,
+    description: '泰国榴莲果肉金黄，香气浓郁，口感绵密，被誉为"水果之王"。',
+    images: [
+      '/images/fruit/durian.jpg',
+      '/images/fruit/durian.jpg',
+      '/images/fruit/durian.jpg',
+    ],
+    origin: '泰国',
+    unit: 'kg',
+    details: [
+      { label: '产地', value: '泰国' },
+      { label: '重量', value: '1kg' },
+      { label: '保质期', value: '3天' },
+      { label: '储存方式', value: '冷藏' },
+    ],
+    reviews: [
+      {
+        id: 1,
+        user: '孙先生',
+        rating: 5,
+        comment: '非常好吃，香气浓郁，果肉饱满！',
+        date: '2024-02-28',
+      },
+    ],
+  },
+]; 
