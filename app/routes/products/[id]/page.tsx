@@ -1,24 +1,23 @@
-'use client';
-
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Metadata } from 'next';
+import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { useCartStore } from '../../../store/cart';
+import { ShoppingCartIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 
 // 产品数据
 const products = [
   {
     id: '1',
-    name: '金枕头芒果',
+    name: '芒果',
     price: 12.99,
     description: '泰国金枕头芒果以其香甜多汁，肉质鲜嫩的特点而闻名。果肉呈金黄色，纤维少，口感极佳。',
     images: [
-      'https://images.unsplash.com/photo-1553279768-865429fa0078?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1553279753-4a7a9a0f3b0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1553279753-4a7a9a0f3b0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80',
+      '/images/fruit/mangoes.jpg',
+      '/images/fruit/mangoes.jpg',
+      '/images/fruit/mangoes.jpg',
     ],
     origin: '泰国',
     unit: 'kg',
@@ -47,13 +46,13 @@ const products = [
   },
   {
     id: '2',
-    name: '毛朱丹',
+    name: '红毛丹',
     price: 15.99,
-    description: '泰国毛朱丹果肉细腻，甜度高，带有独特的香气，是泰国最受欢迎的水果之一。',
+    description: '泰国红毛丹果肉细腻，甜度高，带有独特的香气，是泰国最受欢迎的水果之一。',
     images: [
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
+      '/images/fruit/rambutan.JPG',
     ],
     origin: '泰国',
     unit: 'kg',
@@ -79,9 +78,9 @@ const products = [
     price: 9.99,
     description: '泰国龙眼果肉晶莹剔透，甜而不腻，营养丰富，是夏季消暑佳品。',
     images: [
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
+      '/images/fruit/longan.jpg',
+      '/images/fruit/longan.jpg',
+      '/images/fruit/longan.jpg',
     ],
     origin: '泰国',
     unit: 'kg',
@@ -107,9 +106,9 @@ const products = [
     price: 18.99,
     description: '泰国山竹果肉洁白如玉，口感细腻，酸甜适中，被誉为"水果皇后"。',
     images: [
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
+      '/images/fruit/mangosteen.JPG',
+      '/images/fruit/mangosteen.JPG',
+      '/images/fruit/mangosteen.JPG',
     ],
     origin: '泰国',
     unit: 'kg',
@@ -131,19 +130,19 @@ const products = [
   },
   {
     id: '5',
-    name: '红毛丹',
+    name: '水果礼盒',
     price: 14.99,
-    description: '泰国红毛丹果肉鲜嫩多汁，甜度适中，富含维生素C，是健康水果的首选。',
+    description: '泰国水果礼盒包含多种新鲜热带水果，是送礼和家庭享用的理想选择。',
     images: [
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
+      '/images/fruit/fruit-Mix.jpg',
+      '/images/fruit/fruit-Mix.jpg',
+      '/images/fruit/fruit-Mix.jpg',
     ],
     origin: '泰国',
-    unit: 'kg',
+    unit: '盒',
     details: [
       { label: '产地', value: '泰国' },
-      { label: '重量', value: '1kg' },
+      { label: '重量', value: '2kg' },
       { label: '保质期', value: '4天' },
       { label: '储存方式', value: '冷藏' },
     ],
@@ -152,53 +151,36 @@ const products = [
         id: 1,
         user: '赵女士',
         rating: 4,
-        comment: '很新鲜，口感不错，就是有点贵。',
+        comment: '很新鲜，口感不错，包装精美。',
         date: '2024-03-01',
-      },
-    ],
-  },
-  {
-    id: '6',
-    name: '榴莲',
-    price: 25.99,
-    description: '泰国榴莲果肉金黄，香气浓郁，口感绵密，被誉为"水果之王"。',
-    images: [
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-      'https://images.unsplash.com/photo-1622544807306-3e4756e0ce4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
-    ],
-    origin: '泰国',
-    unit: 'kg',
-    details: [
-      { label: '产地', value: '泰国' },
-      { label: '重量', value: '1kg' },
-      { label: '保质期', value: '3天' },
-      { label: '储存方式', value: '冷藏' },
-    ],
-    reviews: [
-      {
-        id: 1,
-        user: '孙先生',
-        rating: 5,
-        comment: '非常好吃，香气浓郁，果肉饱满！',
-        date: '2024-02-28',
       },
     ],
   },
 ];
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const router = useRouter();
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(0);
-  const addItem = useCartStore((state) => state.addItem);
+// 为静态导出生成路径参数
+export function generateStaticParams() {
+  return products.map((product) => ({
+    id: product.id,
+  }));
+}
 
+// 动态生成页面元数据
+export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+  const product = products.find(p => p.id === params.id);
+  return {
+    title: product ? `${product.name} | 泰果汇` : '商品 | 泰果汇',
+    description: product?.description || '泰国直采新鲜热带水果'
+  };
+}
+
+export default function ProductDetailPage({ params }: { params: { id: string } }) {
   // 根据ID获取产品数据
   const product = products.find(p => p.id === params.id);
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen bg-orange-50 dark:bg-gray-900">
         <Navbar />
         <main className="pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -206,12 +188,12 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             <p className="mt-4 text-gray-600 dark:text-gray-400">
               抱歉，您访问的产品不存在或已被移除。
             </p>
-            <button
-              onClick={() => router.push('/products')}
-              className="mt-8 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg"
+            <Link
+              href="/products"
+              className="mt-8 inline-block px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg"
             >
               返回产品列表
-            </button>
+            </Link>
           </div>
         </main>
         <Footer />
@@ -219,145 +201,171 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     );
   }
 
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.images[0],
-      unit: product.unit,
-    });
-    alert(`已添加 ${quantity}${product.unit} ${product.name} 到购物车`);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-orange-50 dark:bg-gray-900">
       <Navbar />
       
-      <main className="pt-32 pb-20">
+      <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* 产品图片 */}
-            <div className="space-y-4">
-              <div className="relative h-96 w-full rounded-lg overflow-hidden">
-                <Image
-                  src={product.images[selectedImage]}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <div className="grid grid-cols-4 gap-2">
-                {product.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`relative h-20 rounded-lg overflow-hidden ${
-                      selectedImage === index ? 'ring-2 ring-purple-500' : ''
-                    }`}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${product.name} - 图片 ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 产品信息 */}
-            <div className="space-y-6">
+          <div className="mb-8">
+            <Link href="/products" className="inline-flex items-center text-orange-600 hover:text-orange-800">
+              <ArrowLeftIcon className="h-5 w-5 mr-2" />
+              返回产品列表
+            </Link>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+              {/* 产品图片 */}
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{product.name}</h1>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">{product.description}</p>
+                <div className="relative h-96 rounded-lg overflow-hidden mb-4">
+                  <Image
+                    src={product.images[0]}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="flex space-x-4">
+                  {product.images.map((image, index) => (
+                    <div
+                      key={index}
+                      className={`relative h-20 w-20 rounded-md overflow-hidden border-2 ${
+                        index === 0 ? 'border-orange-500' : 'border-transparent'
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${product.name} - 图片 ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              
+              {/* 产品信息 */}
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                  {product.name}
+                </h1>
+                <div className="flex items-center mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        className={`h-5 w-5 ${
+                          i < 4 ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                    {product.reviews.length} 条评价
+                  </span>
+                </div>
+                <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-4">
                   €{product.price}/{product.unit}
-                </span>
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm font-medium px-2.5 py-0.5 rounded-full">
-                  {product.origin}
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <label className="text-gray-700 dark:text-gray-300">数量：</label>
-                  <div className="flex items-center space-x-2">
+                </p>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
+                  {product.description}
+                </p>
+                
+                <div className="border-t border-b border-gray-200 dark:border-gray-700 py-4 mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    产品详情
+                  </h3>
+                  <dl className="grid grid-cols-2 gap-3">
+                    {product.details.map((detail) => (
+                      <div key={detail.label} className="flex flex-col">
+                        <dt className="text-sm text-gray-500 dark:text-gray-400">
+                          {detail.label}
+                        </dt>
+                        <dd className="text-gray-700 dark:text-gray-300">
+                          {detail.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+                
+                <div className="mb-6">
+                  <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    数量
+                  </label>
+                  <div className="flex items-center">
                     <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg"
+                      className="rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 p-2 focus:outline-none focus:ring-1 focus:ring-orange-500"
                     >
                       -
                     </button>
-                    <span className="w-12 text-center">{quantity}</span>
+                    <input
+                      type="number"
+                      id="quantity"
+                      min="1"
+                      defaultValue="1"
+                      className="w-16 text-center border-y border-gray-300 dark:border-gray-600 p-2 focus:outline-none focus:ring-1 focus:ring-orange-500 bg-white dark:bg-gray-800"
+                    />
                     <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg"
+                      className="rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 p-2 focus:outline-none focus:ring-1 focus:ring-orange-500"
                     >
                       +
                     </button>
                   </div>
                 </div>
-
-                <button
-                  onClick={handleAddToCart}
-                  className="w-full flex items-center justify-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg"
+                
+                <Link
+                  href="/cart"
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 px-4 rounded-lg flex items-center justify-center"
                 >
                   <ShoppingCartIcon className="h-5 w-5 mr-2" />
                   加入购物车
-                </button>
+                </Link>
               </div>
-
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">产品详情</h2>
-                <div className="grid grid-cols-2 gap-4">
-                  {product.details.map((detail, index) => (
-                    <div key={index} className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">{detail.label}</span>
-                      <span className="text-gray-900 dark:text-white">{detail.value}</span>
+            </div>
+            
+            {/* 评价部分 */}
+            <div className="p-8 border-t border-gray-200 dark:border-gray-700">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                客户评价
+              </h2>
+              
+              {product.reviews.length > 0 ? (
+                <div className="space-y-6">
+                  {product.reviews.map((review) => (
+                    <div key={review.id} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0">
+                      <div className="flex items-center mb-2">
+                        <span className="font-medium text-gray-900 dark:text-white mr-2">
+                          {review.user}
+                        </span>
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <StarIcon
+                              key={i}
+                              className={`h-4 w-4 ${
+                                i < review.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="ml-auto text-sm text-gray-500 dark:text-gray-400">
+                          {review.date}
+                        </span>
+                      </div>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {review.comment}
+                      </p>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 用户评价 */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">用户评价</h2>
-            <div className="space-y-6">
-              {product.reviews.map((review) => (
-                <div key={review.id} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-medium text-gray-900 dark:text-white">{review.user}</h3>
-                      <div className="flex items-center mt-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className={`h-5 w-5 ${
-                              i < review.rating
-                                ? 'text-yellow-400'
-                                : 'text-gray-300 dark:text-gray-600'
-                            }`}
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{review.date}</span>
-                  </div>
-                  <p className="mt-4 text-gray-600 dark:text-gray-400">{review.comment}</p>
-                </div>
-              ))}
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400">
+                  暂无评价
+                </p>
+              )}
             </div>
           </div>
         </div>

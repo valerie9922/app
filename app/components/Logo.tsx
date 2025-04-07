@@ -1,38 +1,33 @@
+'use client';
+
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface LogoProps {
-  className?: string;
   size?: number;
+  showText?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ className = '', size = 40 }) => {
+const Logo: React.FC<LogoProps> = ({ size = 50, showText = true }) => {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <circle cx="20" cy="20" r="20" fill="#8B5CF6" />
-      <path
-        d="M20 8C22.3869 8 24.6761 8.84285 26.364 10.364C28.0518 11.8851 29 13.9391 29 16.0833C29 19.0521 27.2104 21.5833 24.8333 23L25.875 28.1667L20 25.4583L14.125 28.1667L15.1667 23C12.7896 21.5833 11 19.0521 11 16.0833C11 13.9391 11.9482 11.8851 13.636 10.364C15.3239 8.84285 17.6131 8 20 8Z"
-        fill="white"
-      />
-      <path
-        d="M17.5 16.5C17.5 15.3954 18.3954 14.5 19.5 14.5H20.5C21.6046 14.5 22.5 15.3954 22.5 16.5C22.5 17.6046 21.6046 18.5 20.5 18.5H19.5C18.3954 18.5 17.5 17.6046 17.5 16.5Z"
-        fill="#F472B6"
-      />
-      <path
-        d="M15 19.5C15 18.3954 15.8954 17.5 17 17.5H18C19.1046 17.5 20 18.3954 20 19.5C20 20.6046 19.1046 21.5 18 21.5H17C15.8954 21.5 15 20.6046 15 19.5Z"
-        fill="#F472B6"
-      />
-      <path
-        d="M20 19.5C20 18.3954 20.8954 17.5 22 17.5H23C24.1046 17.5 25 18.3954 25 19.5C25 20.6046 24.1046 21.5 23 21.5H22C20.8954 21.5 20 20.6046 20 19.5Z"
-        fill="#F472B6"
-      />
-    </svg>
+    <Link href="/" className="flex items-center">
+      <div className="relative" style={{ width: size, height: size }}>
+        <Image
+          src="/images/logo/logo.png"
+          alt="泰果汇Logo"
+          fill
+          className="object-contain"
+          priority
+          unoptimized
+        />
+      </div>
+      {showText && (
+        <span className="ml-2 text-xl font-bold bg-gradient-to-r from-orange-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent drop-shadow">
+          泰<span className="text-blue-600">果</span>汇
+        </span>
+      )}
+    </Link>
   );
 };
 

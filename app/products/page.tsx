@@ -13,9 +13,9 @@ import { useCartStore } from '../store/cart';
 const products = [
   {
     id: '1',
-    name: '金枕头芒果',
+    name: '芒果',
     price: 12.99,
-    description: '泰国金枕头芒果以其香甜多汁，肉质鲜嫩的特点而闻名。果肉呈金黄色，纤维少，口感极佳。',
+    description: '泰国芒果以其香甜多汁，肉质鲜嫩的特点而闻名。果肉呈金黄色，纤维少，口感极佳。',
     image: '/images/fruit/mangoes.jpg',
     category: '芒果',
     origin: '泰国',
@@ -23,13 +23,13 @@ const products = [
   },
   {
     id: '2',
-    name: '毛朱丹',
+    name: '定制水果礼盒',
     price: 15.99,
-    description: '泰国毛朱丹果肉细腻，甜度高，带有独特的香气，是泰国最受欢迎的水果之一。',
-    image: '/images/fruit/rambutan.JPG',
+    description: '精心搭配的泰国水果礼盒，包含多种当季新鲜水果，是送礼佳选。',
+    image: '/images/fruit/fruit-Mix.jpg',
     category: '热带水果',
     origin: '泰国',
-    unit: 'kg',
+    unit: '盒',
   },
   {
     id: '3',
@@ -57,16 +57,6 @@ const products = [
     price: 14.99,
     description: '泰国红毛丹果肉鲜嫩多汁，甜度适中，富含维生素C，是健康水果的首选。',
     image: '/images/fruit/rambutan.JPG',
-    category: '热带水果',
-    origin: '泰国',
-    unit: 'kg',
-  },
-  {
-    id: '6',
-    name: '榴莲',
-    price: 25.99,
-    description: '泰国榴莲果肉金黄，香气浓郁，口感绵密，被誉为"水果之王"。',
-    image: '/images/fruit/durian.jpg',
     category: '热带水果',
     origin: '泰国',
     unit: 'kg',
@@ -103,7 +93,7 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-orange-50 dark:bg-gray-900">
       <Navbar />
       
       <main className="pt-32 pb-20">
@@ -119,12 +109,12 @@ export default function ProductsPage() {
                   placeholder="搜索水果..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg"
+                className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg"
               >
                 {showFilters ? '隐藏筛选' : '显示筛选'}
               </button>
@@ -136,7 +126,7 @@ export default function ProductsPage() {
                   onClick={() => setSelectedCategory(null)}
                   className={`px-4 py-2 rounded-lg ${
                     !selectedCategory
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-orange-600 text-white'
                       : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                   }`}
                 >
@@ -148,7 +138,7 @@ export default function ProductsPage() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-lg ${
                       selectedCategory === category
-                        ? 'bg-purple-600 text-white'
+                        ? 'bg-orange-600 text-white'
                         : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                     }`}
                   >
@@ -174,6 +164,7 @@ export default function ProductsPage() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      unoptimized
                     />
                   </div>
                   <div className="p-4">
@@ -184,10 +175,10 @@ export default function ProductsPage() {
                       {product.description}
                     </p>
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                      <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
                         €{product.price}/{product.unit}
                       </span>
-                      <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm font-medium px-2.5 py-0.5 rounded-full">
+                      <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-sm font-medium px-2.5 py-0.5 rounded-full">
                         {product.origin}
                       </span>
                     </div>
@@ -196,7 +187,7 @@ export default function ProductsPage() {
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg"
+                    className="w-full flex items-center justify-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg"
                   >
                     <ShoppingCartIcon className="h-5 w-5 mr-2" />
                     加入购物车
